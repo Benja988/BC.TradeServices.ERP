@@ -6,7 +6,7 @@ pageextension 50102 ContactCardExtension extends "Contact Card"
         {
             field("Linkedin Profile";Rec."Linkedin Profile")
             {
-                
+                ApplicationArea = All;
             }
         }
     }

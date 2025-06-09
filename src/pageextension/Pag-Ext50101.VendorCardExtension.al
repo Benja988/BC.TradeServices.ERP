@@ -8,11 +8,11 @@ pageextension 50101 VendorCardExtension extends "Vendor Card"
             {
                 field("Vendor Category";Rec."Vendor Category")
                 {
-
+                    ApplicationArea = All;
                 }
                 field("Preferred Vendor";Rec."Preferred Vendor")
                 {
-                    
+                    ApplicationArea = All;
                 }
             }
         }

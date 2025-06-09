@@ -8,11 +8,12 @@ pageextension 50100 CustomerCardExtension extends "Customer Card"
             {
                 field("Customer Type";Rec."Customer Type")
                 {
+                    ApplicationArea = All;
 
                 }
                 field("Account Manager";Rec."Account Manager")
                 {
-                    
+                    ApplicationArea = All;
                 }
             }
         }
