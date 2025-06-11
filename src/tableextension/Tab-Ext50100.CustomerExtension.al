@@ -17,9 +17,7 @@ tableextension 50100 CustomerExtension extends Customer
             Caption = 'Account Manager';
             DataClassification = CustomerContent;
             
-
         }
-
     }
 
 
