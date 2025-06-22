@@ -4,18 +4,26 @@ table 50100 CustomerOnboarding
     DataClassification = ToBeClassified;
     TableType = Normal;
     DataPerCompany = true;
-    // Access = Public;
+    Access = Public;
     Description = 'Handles Pre-customer registration data.';
-    // Permissions = tabledata Customer = RIMD;
-    
+    Permissions = tabledata Customer = RIMD;
+
     fields
     {
-        field(1; "Entry No."; Integer)
+        field(1; "No."; Code[20])
         {
-            Caption = 'Entry No.';
-            DataClassification = SystemMetadata;
-            AutoIncrement = true;
-            Editable = false;
+            Caption = 'No.';
+            Editable = true;
+            NotBlank = true;
+
+            trigger OnValidate()
+            begin
+                SalesSetup.Get();
+                if "No." <> xRec."No." then
+                    NoSeriesMgt.TestManual(SalesSetup."Customer Onboarding No.");
+                "No. Series":='';
+                    
+            end;
         }
         field(2; "Customer Name"; Text[100])
         {
@@ -89,15 +97,19 @@ table 50100 CustomerOnboarding
         {
             Caption = 'Last Modified DateTime';
         }
+        field(15; "No. Series"; Code[20])
+        {
+            TableRelation = "No. Series";
+        }
     }
     keys
     {
-        key(PK; "Entry No.")
+        key(PK; "No.")
         {
             Clustered = true;
         }
-        key(NameIdx; "Customer Name") {}
-        key(EmailIdx; "Email") {}
+        key(NameIdx; "Customer Name") { }
+        key(EmailIdx; "Email") { }
     }
 
     fieldgroups
@@ -109,13 +121,23 @@ table 50100 CustomerOnboarding
     }
 
     trigger OnInsert()
+
     begin
         // "Submission Date" := Today;
         "Submitted By" := UserId;
+        SalesSetup.Get();
+        SalesSetup.TestField(SalesSetup."Customer Onboarding No.");
+        if "No." = '' then
+            NoSeriesMgt.InitSeries(SalesSetup."Customer Onboarding No.", xRec."No. Series", 0D, "No.", "No. Series");
+
     end;
 
     trigger OnModify()
     begin
-        "Last Modified DateTime" :=CurrentDateTime;
+        "Last Modified DateTime" := CurrentDateTime;
     end;
+
+    var
+        SalesSetup: Record "Sales & Receivables Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
 }

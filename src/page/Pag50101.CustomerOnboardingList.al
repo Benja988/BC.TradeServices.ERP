@@ -15,11 +15,12 @@ page 50101 "Customer Onboarding List"
         {
             repeater(General)
             {
-                field("Entry No."; Rec."Entry No.")
+                field("No.";Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the Entry No. field.', Comment = '%';
                     ApplicationArea = all;
                 }
+                
                 field("Customer Name"; Rec."Customer Name")
                 {
                     ToolTip = 'Specifies the value of the Customer Name field.', Comment = '%';

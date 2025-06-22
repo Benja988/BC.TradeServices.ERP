@@ -13,10 +13,14 @@ page 50102 "Customer Onboarding Card"
             {
                 Caption = 'General';
 
-                field("Entry No."; Rec."Entry No.")
+                field("No.";Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the Entry No. field.', Comment = '%';
                     ApplicationArea = all;
+                }
+                field("No. Series";Rec."No. Series")
+                {
+                    ApplicationArea = All;
                 }
                 field("Customer Name"; Rec."Customer Name")
                 {
