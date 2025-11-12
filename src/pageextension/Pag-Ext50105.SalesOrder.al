@@ -37,6 +37,17 @@ pageextension 50105 SalesOrder extends "Order Processor Role Center"
                     RunPageLink = Status = const(Rejected);
                 }
             }
+
+            group(DataTypes)
+            {
+                Caption = '(AL Study)';
+                action("Test001")
+                {
+                    ApplicationArea=All;
+                    Caption='Member Application';
+                    RunObject = Page "Member Application";
+                }
+            }
         }
     }
 }

@@ -1,0 +1,82 @@
+Supply Chain Mng
+=>Sales Process
+1. Create a Sales quote which can convert to a sales invoice or sales order
+
+=>Special prices and discounts
+=>Purchase Order
+**Drop Shipment
+✅Automated workflows ✅OCR functionality
+
+Replenishment - Requests made to restock inventory to maintain optimal stock levels and ensure that products are available
+
+
+You tried to invoke the 
+
+=>Resource management
+
+Projects => Helps you keep track of  usage on projects and provides data for invoicing the customer.
+
+
+⚠️ Service Management
+⚠️Manufacturing Capabilities
+
+work centers
+routings
+BOMs
+
+//=======================
+//Getting started with MD365BC ✅
+//============================
+
+//====================
+//Use application development best practices in Microsoft Dynamics //365 Business Central
+//======================================
+Identifier => Name of a programming element(PascalCase) eg CustomerName
+variable => location in memory where data is stored
+
+variable initialization => given a default value before assigning a value
+
+myint, nextint, thirdint : Integer;
+isValid, doCheck : Boolean;
+
+DataTypes = Fundamental, Complex
+
+You can convert option values to integers
+variable of type option *** You can't use optionmembers
+
+Options in a table aren't extendable with a table extension
+Enum=> Object
+
+Only enums with extensible property set to true can be extended
+
+
+
+AL supports 3 types of collection = {All Are strongly typed}
+1. Arrays => Contains group of values of the same data types
+=> An Array is declared as a variable with the following traits
+✅An Identifier
+✅A data type
+✅One or more elements
+✅A dimension
+
+An Array holds multiple values stored in the elements of the array. You can access the arrays by using 
+the index which can also be a value stored in another variable.
+
+💥In AL you start counting at 1 for an array.
+
+
+2. Lists
+List types can only be used with fundamental types and represents a strongly types lis of values
+that can be accessed by by index.
+
+
+3. Dictionaries
+Uses the System.Collections.Generic.Dictionary<TKey,TValue> Class from the .NET Framework
+Every Key that you create must be uniqueue
+
+
+:= =>{Assignment Operator}
+
+Expression - Is a formula that specifies how to generate a desired value and then evaluates to a value.
+Operators:= unary, string, arithmetic, relational, logical
+
