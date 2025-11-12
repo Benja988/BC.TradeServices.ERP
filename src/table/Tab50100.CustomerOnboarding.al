@@ -1,3 +1,5 @@
+// namespace Microsoft.Sales.Customer;
+
 table 50100 CustomerOnboarding
 {
     Caption = 'CustomerOnboarding';
@@ -13,15 +15,19 @@ table 50100 CustomerOnboarding
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
-            Editable = true;
+            Editable = false;
             NotBlank = true;
 
             trigger OnValidate()
             begin
-                SalesSetup.Get();
-                if "No." <> xRec."No." then
-                    NoSeriesMgt.TestManual(SalesSetup."Customer Onboarding No.");
-                "No. Series":='';
+                // SalesSetup.Get();
+                // if "No." <> xRec."No." then
+                //     NoSeriesMgt.TestManual(SalesSetup."Customer Onboarding No.");
+                // "No. Series":='';
+
+                TestNoSeries();
+                // if "No." = '' then
+                //     "No." := "No.";
                     
             end;
         }
@@ -121,14 +127,43 @@ table 50100 CustomerOnboarding
     }
 
     trigger OnInsert()
+    var
+        CustomerOnboard: Record CustomerOnboarding;
+        NoSeriesMgt: Codeunit NoSeriesManagement;
+        IsHandled: Boolean;
 
     begin
         // "Submission Date" := Today;
         "Submitted By" := UserId;
-        SalesSetup.Get();
-        SalesSetup.TestField(SalesSetup."Customer Onboarding No.");
-        if "No." = '' then
-            NoSeriesMgt.InitSeries(SalesSetup."Customer Onboarding No.", xRec."No. Series", 0D, "No.", "No. Series");
+        // SalesSetup.Get();
+        // SalesSetup.TestField(SalesSetup."Customer Onboarding No.");
+        // if "No." = '' then
+        //     NoSeriesMgt.InitSeries(SalesSetup."Customer Onboarding No.", xRec."No. Series", 0D, "No.", "No. Series");
+
+        IsHandled := false;
+        OnBeforeInsert(Rec, IsHandled);
+        if IsHandled then
+            exit;
+        
+        if "No." = '' then begin
+            SalesSetup.Get();
+            SalesSetup.TestField("Customer Onboarding No.");
+
+            NoSeriesMgt.RaiseObsoleteOnBeforeInitSeries(SalesSetup."Customer Onboarding No.", xRec."No. Series", 0D, "No.", "No. Series", IsHandled);
+            if not IsHandled then begin
+                "No. Series" := SalesSetup."Customer Onboarding No.";
+                if NoSeries.AreRelated("No. Series", xRec."No. Series") then
+                    "No. Series" := xRec."No. Series";
+                "No." := NoSeries.GetNextNo("No. Series");
+                CustomerOnboard.ReadIsolation(IsolationLevel::ReadUncommitted);
+                CustomerOnboard.SetLoadFields("No.");
+                while CustomerOnboard.Get("No.") do
+                    "No." := NoSeries.GetNextNo("No. Series");
+                NoSeriesMgt.RaiseObsoleteOnAfterInitSeries("No. Series", SalesSetup."Customer Onboarding No.", 0D, "No.");
+            end;
+        end;
+
+        OnAfterOnInsert(Rec, xRec);
 
     end;
 
@@ -139,5 +174,40 @@ table 50100 CustomerOnboarding
 
     var
         SalesSetup: Record "Sales & Receivables Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        // NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeries: Codeunit "No. Series";
+
+    local procedure TestNoSeries()
+    var
+        Customer: Record Customer;
+        IsHandled: Boolean;
+    begin
+        IsHandled := false;
+        // OnBeforeTestNoSeries(Rec, xRec, IsHandled);
+        OnBeforeTestNoSeries(Rec, xRec, IsHandled);
+        if IsHandled then
+            exit;
+
+        if "No." <> xRec."No." then
+            if not Customer.Get(Rec."No.") then begin
+                SalesSetup.Get();
+                NoSeries.TestManual(SalesSetup."Customer Nos.");
+                "No. Series" := '';
+            end;
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeTestNoSeries(var CustomerOnboarding: Record CustomerOnboarding; xCustomerOnboarding: Record CustomerOnboarding; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeInsert(var CustomerOnboarding: Record CustomerOnboarding; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterOnInsert(var CustomerOnboarding: Record CustomerOnboarding; xCustomerOnboarding: Record CustomerOnboarding)
+    begin
+    end;
 }
