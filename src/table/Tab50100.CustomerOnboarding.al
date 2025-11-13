@@ -28,7 +28,7 @@ table 50100 CustomerOnboarding
                 TestNoSeries();
                 // if "No." = '' then
                 //     "No." := "No.";
-                    
+
             end;
         }
         field(2; "Customer Name"; Text[100])
@@ -126,6 +126,7 @@ table 50100 CustomerOnboarding
         }
     }
 
+    // #pragma warning disable warning-list
     trigger OnInsert()
     var
         CustomerOnboard: Record CustomerOnboarding;
@@ -144,7 +145,7 @@ table 50100 CustomerOnboarding
         OnBeforeInsert(Rec, IsHandled);
         if IsHandled then
             exit;
-        
+
         if "No." = '' then begin
             SalesSetup.Get();
             SalesSetup.TestField("Customer Onboarding No.");
@@ -166,7 +167,7 @@ table 50100 CustomerOnboarding
         OnAfterOnInsert(Rec, xRec);
 
     end;
-
+    // #pragma warning restore warning-list
     trigger OnModify()
     begin
         "Last Modified DateTime" := CurrentDateTime;
