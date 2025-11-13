@@ -35,7 +35,7 @@ page 50103 "Member Application"
             group(Output)
             {
                 Caption = 'Output';
-                field(Result;Result)
+                field(Result; Result)
                 {
                     ApplicationArea = All;
                     Editable = false;
@@ -62,17 +62,24 @@ page 50103 "Member Application"
         }
     }
 
-    trigger OnOpenPage()
+    /* trigger OnOpenPage()
     begin
-        /*Message('The value of %1 is %2', 'YesOrNo', YesOrNo);
+        Message('The value of %1 is %2', 'YesOrNo', YesOrNo);
         Message('The value of %1 is %2', 'Amount', Amount);
         Message('The value of %1 is %2', 'When Was It', "When Was It");
         Message('The value of %1 is %2', 'What Time', "What Time");
         Message('The value of %1 is %2', 'Description', Description);
         Message('The value of %1 is %2', 'Code Number', "Code Number");
         Message('The value of %1 is %2', 'Ch', Ch);
-        Message('The value of %1 is %2', 'Color', Color);*/
-    end;
+        Message('The value of %1 is %2', 'Color', Color);
+    end; */
+
+    #if DEBUG
+        trigger OnOpenPage()
+        begin
+            Message('Only in debug versions');
+        end;
+    #endif
 
     var
         LoopNo: Integer;

@@ -48,6 +48,29 @@ table 50101 MemberApplication
         CountriesDictionary.Add('US', CustomerNames);
     end;
 
+    procedure ConditionalStatement()
+    var
+        a: Integer;
+        b: Integer;
+        c: Integer;
+    begin
+        a := 10;
+        b := 5;
+
+        if a > b then
+            c := a-b;
+        
+        if a > b then begin
+            c := a-b;
+            Message('%1', c);
+        end;
+
+        if a > b then 
+            c := a - b
+        else
+            c := a + b;
+    end;
+
     var
         SalesAmount: array[10] of Integer;
         PurchaseAmount: array[6,9] of Integer;

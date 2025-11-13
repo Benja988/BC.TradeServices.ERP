@@ -14,6 +14,7 @@
   "screenshots": [],
   "platform": "1.0.0.0",
   "application": "26.0.0.0",
+  "preprocessorSymbols": ["DEBUG"],
   "idRanges": [
     {
       "from": 50100,
@@ -25,8 +26,10 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
+  "suppressWarnings": ["AL0432"],
   "runtime": "15.0",
   "features": [
     "NoImplicitWith"
   ]
+  
 }
