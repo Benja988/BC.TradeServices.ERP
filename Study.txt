@@ -81,3 +81,63 @@ Expression - Is a formula that specifies how to generate a desired value and the
 Operators:= unary, string, arithmetic, relational, logical
 
 +> Conditional statements
+
+Use repetitive statements
+for-to-do
+
+for-downto-do
+
+foreach-in-do
+
+while-do
+
+repeat-until
+
+
+=> Interaction methods
+-Message
+-Confirm
+-Error
+-StrMenu
+
+=> Numeric Functions
+-Round
+-Abs
+-Power
+-Random = // NewNumber := Round(Number[, Precision][,Direction])
+-Randomize
+
+=> Array Functions
+-ArrayLen
+-CompressArray
+-CopyArray
+
+=>List Functions
+Add(X)
+
+Contains(X)
+
+Get(index)
+
+Set(index, X)
+
+Insert(index, X)
+
+Remove(X)
+
+RemoveAt(index)
+
+Count(index)
+
+AddRange(X, [X], [X], ...)
+
+GetRange(index, count, List of [X])
+
+RemoveRange(index, count)
+
+IndexOf(X)
+
+LastIndexOf(X)
+
+Reverse
+

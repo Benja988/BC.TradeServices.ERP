@@ -74,12 +74,13 @@ page 50103 "Member Application"
         Message('The value of %1 is %2', 'Color', Color);
     end; */
 
-    #if DEBUG
-        trigger OnOpenPage()
-        begin
-            Message('Only in debug versions');
-        end;
-    #endif
+#if DEBUG
+    trigger OnOpenPage()
+    begin
+        // Message('Only in debug versions');
+        Rec.TestDatesFunctions();
+    end;
+#endif
 
     var
         LoopNo: Integer;
