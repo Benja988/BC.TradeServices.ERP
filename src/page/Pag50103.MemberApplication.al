@@ -16,6 +16,16 @@ page 50103 "Member Application"
                 field("No."; Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the No. field.', Comment = '%';
+
+                    ApplicationArea = All;
+                    Importance = Standard;
+                    // Visible = NoFieldVisible;
+
+                    trigger OnAssistEdit()
+                    begin
+                        if Rec.AssistEdit(xRec) then
+                            CurrPage.Update();
+                    end;
                 }
             }
             group(Input)
@@ -76,11 +86,39 @@ page 50103 "Member Application"
 
 #if DEBUG
     trigger OnOpenPage()
+    var
+        TableHeader: Record MemberApplication;
+        
     begin
         // Message('Only in debug versions');
-        Rec.TestDatesFunctions();
+        // Rec.TestDatesFunctions();
+        // TodaysDay();
+        TableHeader.MyFunction();
     end;
 #endif
+
+    procedure TodaysDay()
+    var
+        Days: Text[50];
+        Selection: Integer;
+    begin
+        Days := 'Monday, Tuesday, Wednesday, Thursday, Friday';
+        Selection := StrMenu(Days, 1, 'Which day is today ?');
+        Message('You Selected %1.', Selection);
+        if GuiAllowed then
+            Message('Hello');
+    end;
+
+    Procedure GetCustomerByName(Name: Text): Record Customer;
+    var
+        Customer: Record Customer;
+    begin
+        Customer.SetFilter(Name, '@' + Name + '*');
+        Customer.FindFirst();
+        exit(Customer);
+    end;
+
+
 
     var
         LoopNo: Integer;
@@ -95,4 +133,5 @@ page 50103 "Member Application"
         Value1: Integer;
         Value2: Integer;
         Result: Boolean;
+        NoFieldVisible: Boolean;
 }

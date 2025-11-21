@@ -8,6 +8,11 @@ table 50101 MemberApplication
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
+            OptimizeForTextSearch = true;
+        }
+        field(2; "No. Series"; Code[20])
+        {
+            DataClassification = ToBeClassified;
         }
 
     }
@@ -18,6 +23,56 @@ table 50101 MemberApplication
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    begin
+
+    end;
+
+    trigger OnModify()
+    begin
+
+    end;
+
+    trigger OnDelete()
+    begin
+
+    end;
+
+    trigger OnRename()
+    begin
+
+    end;
+
+    procedure AssistEdit(OldCust: Record MemberApplication): Boolean
+    var
+        Cust: Record MemberApplication;
+        SalesSetup: Record "Sales & Receivables Setup";
+        NoSeries: Codeunit "No. Series";
+    begin
+        Cust := Rec;
+        SalesSetup.Get();
+        SalesSetup.TestField("Customer Nos.");
+        if NoSeries.LookupRelatedNoSeries(SalesSetup."Customer Nos.", OldCust."No. Series", Cust."No. Series") then begin
+            Cust."No." := NoSeries.GetNextNo(Cust."No. Series");
+            Rec := Cust;
+            OnAssistEditOnBeforeExit(Cust);
+            exit(true);
+        end;
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAssistEditOnBeforeExit(var Member: Record MemberApplication)
+    begin
+    end;
+
+    local procedure SetNoFieldVisible()
+    var
+        DocumentNoVisibility: Codeunit DocumentNoVisibility;
+    begin
+        NoFieldVisible := DocumentNoVisibility.CustomerNoIsVisible();
+    end;
+
 
     procedure SelectColor()
     var
@@ -97,11 +152,34 @@ table 50101 MemberApplication
 
     end;
 
+    procedure CalculatePrice(): Decimal
+    begin
+
+    end;
+
+    procedure MyFunction(): Integer
+    var
+        myResult: Integer;
+    begin
+        myResult := Power(2, 3);
+        exit(myResult);
+        Message('2 Raise to Power 3 is %1', myResult);
+    end;
+
+    
+
+    [IntegrationEvent(false, false)]
+    local procedure MyProcedure()
+    begin
+    end;
+
+
     var
         SalesAmount: array[10] of Integer;
         PurchaseAmount: array[6, 9] of Integer;
 
         TestString: label 'The quick brown fox jumped over the lazy dogs';
+        NoFieldVisible: Boolean;
 
 
 }

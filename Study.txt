@@ -141,3 +141,56 @@ LastIndexOf(X)
 
 Reverse
 
+=> Creating procedures
+Local
+Global
+Internal
+Protected
+
+When you create a procedure and the procedure has finished running, if you want the
+procedure to return something use exit statements
+exit(<Expression>)
+exit(param * param)
+
+Table triggers are run before the action is taken.
+OnValidate is used to run extra validation when user enters the data in a certain field.
+The onvalidate trigger is called before data is stored in the database
+
+OnlookUp is triggered when you perform a lookup to another table.
+set tablerelation property on the field.
+
+RunObject property can be used to open another page
+
+
+Implementing Event
+1. Publish Event - Create and configure the function
+2. Raise the Event - Add code that calls the event publisher function
+3. Subscribe to the event - Add one or more subscriber functions
+
+Types of events
+1. Business
+2. Integration
+3. Trigger
+
+Trigger events
+OnBeforeInsert
+
+OnAfterInsert
+
+OnBeforeDelete
+
+OnAfterDelete
+
+OnBeforeModify
+
+OnAfterModify
+
+OnBeforeRename
+
+OnAfterRename
+
+OnBeforeValidate
+
+OnAfterValidate
+
+
