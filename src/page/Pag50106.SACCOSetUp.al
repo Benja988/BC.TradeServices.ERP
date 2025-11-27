@@ -53,6 +53,22 @@ page 50106 "SACCO SetUp"
                     ApplicationArea = All;
                 }
             }
+            group("Number Series")
+            {
+                Caption = 'Number Series';
+                field("Member Nos."; Rec."Member Nos.")
+                {
+                    ApplicationArea = All;
+                }
+                field("Member Application Nos."; Rec."Member Application Nos.")
+                {
+                    ApplicationArea = All;
+                }
+                field("FOSA Account Nos."; Rec."FOSA Account Nos.")
+                {
+                    ApplicationArea = All;
+                }
+            }
         }
     }
 }

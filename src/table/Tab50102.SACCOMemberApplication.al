@@ -14,8 +14,18 @@ table 50102 "SACCO Member Application"
         // ==================== DOCUMENT NO. & SERIES ====================
         field(1; "No."; Code[20])
         {
-            Caption = 'Application No.';
-            NotBlank = true;
+            OptimizeForTextSearch = true;
+            Editable = false;
+
+            trigger OnValidate()
+            begin
+                if "No." <> xRec."No." then begin
+                    SACCOSetup.Get();
+                    NoSeries.TestManual(SACCOSetup."Member Application Nos.");
+                    "No. Series" := '';
+                end;
+                OnAfterValidateNo(Rec, xRec);
+            end;
         }
 
         field(2; "No. Series"; Code[20])
@@ -30,22 +40,32 @@ table 50102 "SACCO Member Application"
         {
             Caption = 'First Name';
             NotBlank = true;
+            trigger OnValidate()
+            begin
+                UpdateFullName();
+            end;
         }
         field(11; "Middle Name"; Text[50])
         {
             Caption = 'Middle Name';
+            trigger OnValidate()
+            begin
+                UpdateFullName();
+            end;
         }
         field(12; "Surname"; Text[50])
         {
             Caption = 'Surname';
             NotBlank = true;
+            trigger OnValidate()
+            begin
+                UpdateFullName();
+            end;
         }
         field(13; "Full Name"; Text[150])
         {
             Caption = 'Full Name';
             Editable = false;
-            /* FieldClass = FlowField;
-            CalcFormula = Combine("First Name", ' ', "Middle Name", ' ', "Surname"); */
         }
 
         field(15; "Name as per ID"; Text[150])
@@ -290,15 +310,40 @@ table 50102 "SACCO Member Application"
         }
     }
 
+
+
     trigger OnInsert()
     var
         NoSeriesMgt: Codeunit NoSeriesManagement;
-    // SACCOSetup: Record "SACCO Setup";
+        SACCOSetup: Record "SACCO Setup";
+        MembApp: Record "SACCO Member Application";
+
+        IsHandled: Boolean;
     begin
+        IsHandled := false;
+        OnBeforeInsert(Rec, IsHandled);
+        if IsHandled then
+            exit;
+
         if "No." = '' then begin
-            // SACCOSetup.Get();
-            // SACCOSetup.TestField("Member Application Nos.");
-            // NoSeriesMgt.InitSeries(SACCOSetup."Member Application Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            SACCOSetup.Get();
+            SACCOSetup.TestField("Member Application Nos.");
+
+            NoSeriesMgt.RaiseObsoleteOnBeforeInitSeries(SACCOSetup."Member Application Nos.", xRec."No. Series", 0D, "No.", "No. Series", IsHandled);
+            if not IsHandled then begin
+
+                "No. Series" := SACCOSetup."Member Application Nos.";
+                if NoSeries.AreRelated("No. Series", xRec."No. Series") then
+                    "No. Series" := xRec."No. Series";
+                "No." := NoSeries.GetNextNo("No. Series");
+                MembApp.ReadIsolation(IsolationLevel::ReadUncommitted);
+                MembApp.SetLoadFields("No.");
+                while MembApp.Get("No.") do
+                    "No." := NoSeries.GetNextNo("No. Series");
+
+                NoSeriesMgt.RaiseObsoleteOnAfterInitSeries("No. Series", SACCOSetup."Member Application Nos.", 0D, "No.");
+            end;
+
         end;
 
         "Created Date" := CurrentDateTime;
@@ -316,5 +361,59 @@ table 50102 "SACCO Member Application"
     begin
         if Status <> Status::Open then
             Error('Cannot delete an application that is %1.', Status);
+    end;
+
+
+    // =====================Assist Edit==========================
+    procedure AssistEdit(OldMemb: Record "SACCO Member Application"): Boolean
+    var
+        MembApp: Record "SACCO Member Application";
+    begin
+        MembApp := Rec;
+        SACCOSetup.Get();
+        SACCOSetup.TestField("Member Application Nos.");
+        if NoSeries.LookupRelatedNoSeries(SACCOSetup."Member Application Nos.", OldMemb."No. Series", MembApp."No. Series") then begin
+            Rec := MembApp;
+            OnAssistEditOnBeforeExit(Rec);
+            exit(true);
+        end;
+    end;
+    // ==========================================================
+
+
+    // =================Geting Full Name of Member =============
+    local procedure UpdateFullName()
+    var
+        FullName: Text[150];
+    begin
+        FullName := "First Name";
+
+        if "Middle Name" <> '' then
+            FullName := FullName + ' ' + "Middle Name";
+        if Surname <> '' then
+            FullName := FullName + ' ' + Surname;
+
+        "Full Name" := FullName;
+    end;
+    // =========================================================
+
+
+    var
+        SACCOSetup: Record "SACCO Setup";
+        NoSeries: Codeunit "No. Series";
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAfterValidateNo(var MembApp: Record "SACCO Member Application"; xMembApp: Record "SACCO Member Application")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnAssistEditOnBeforeExit(var MembApp: Record "SACCO Member Application")
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeInsert(var MembApp: Record "SACCO Member Application"; var IsHandled: Boolean)
+    begin
     end;
 }
