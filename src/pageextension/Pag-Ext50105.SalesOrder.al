@@ -43,9 +43,22 @@ pageextension 50105 SalesOrder extends "Order Processor Role Center"
                 Caption = '(AL Study)';
                 action("Test001")
                 {
-                    ApplicationArea=All;
-                    Caption='Member Application';
+                    ApplicationArea = All;
+                    Caption = 'Member Application';
                     RunObject = Page "Member Application";
+                }
+
+                action("Memb001")
+                {
+                    ApplicationArea = All;
+                    Caption = 'SACCO Member Application';
+                    RunObject = Page "SACCO Member Application List";
+                }
+                action(SACCOSetUp)
+                {
+                    ApplicationArea = All;
+                    Caption = 'SACCO SetUp';
+                    RunObject = Page "SACCO SetUp";
                 }
             }
         }

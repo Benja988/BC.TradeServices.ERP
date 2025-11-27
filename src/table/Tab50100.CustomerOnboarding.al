@@ -130,7 +130,7 @@ table 50100 CustomerOnboarding
     trigger OnInsert()
     var
         CustomerOnboard: Record CustomerOnboarding;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         IsHandled: Boolean;
 
     begin
@@ -150,7 +150,7 @@ table 50100 CustomerOnboarding
             SalesSetup.Get();
             SalesSetup.TestField("Customer Onboarding No.");
 
-            NoSeriesMgt.RaiseObsoleteOnBeforeInitSeries(SalesSetup."Customer Onboarding No.", xRec."No. Series", 0D, "No.", "No. Series", IsHandled);
+            // NoSeriesMgt.RaiseObsoleteOnBeforeInitSeries(SalesSetup."Customer Onboarding No.", xRec."No. Series", 0D, "No.", "No. Series", IsHandled);
             if not IsHandled then begin
                 "No. Series" := SalesSetup."Customer Onboarding No.";
                 if NoSeries.AreRelated("No. Series", xRec."No. Series") then
@@ -160,7 +160,7 @@ table 50100 CustomerOnboarding
                 CustomerOnboard.SetLoadFields("No.");
                 while CustomerOnboard.Get("No.") do
                     "No." := NoSeries.GetNextNo("No. Series");
-                NoSeriesMgt.RaiseObsoleteOnAfterInitSeries("No. Series", SalesSetup."Customer Onboarding No.", 0D, "No.");
+                // NoSeriesMgt.RaiseObsoleteOnAfterInitSeries("No. Series", SalesSetup."Customer Onboarding No.", 0D, "No.");
             end;
         end;
 
