@@ -40,8 +40,8 @@ codeunit 50101 Validations
     // ==========================================================
     // Validate PhoNo
     // ==========================================================
-    [EventSubscriber(ObjectType::Table, Database::"SACCO Member Application", OnAfterValidateEvent, 'Phone No.', false, false)]
-    local procedure ValidatePhoneNo(var Rec: Record "SACCO Member Application"; var xRec: Record "SACCO Member Application")
+    /*[EventSubscriber(ObjectType::Table, Database::"SACCO Member Application", OnAfterValidateEvent, 'Phone No.', false, false)]
+     local procedure ValidatePhoneNo(var Rec: Record "SACCO Member Application"; var xRec: Record "SACCO Member Application")
     var
         Phone: Text;
         ErrorMsg: Text;
@@ -76,6 +76,41 @@ codeunit 50101 Validations
             if not (InputText[i] in ['0' .. '9']) then
                 exit(false);
         exit(true);
+    end;
+ */
+
+    // =======================================================
+    // Kenya Specific Phone No Validation
+    // =================================================
+    [EventSubscriber(ObjectType::Table, Database::"SACCO Member Application", OnAfterValidateEvent, "Alternative Phone No.", false, false)]
+    local procedure KenyaPhonNoValidation(var Rec: Record "SACCO Member Application"; var xRec: Record "SACCO Member Application")
+    var
+        PhoneNo: Text;
+    begin
+        PhoneNo := Rec."Phone No.";
+        PhoneNo := DelChr(PhoneNo, '=', ' '); /* Removes White Spaces */
+
+        /* +254 Format */
+        if CopyStr(PhoneNo, 1, 4) = '+254' then begin
+            if StrLen(PhoneNo) <> 13 then
+                Error('Invalid phone number. +254 format must be exactly 13 characters.');
+            Exit;
+        end;
+
+        /* 07X format */
+        if CopyStr(PhoneNo, 1, 2) = '07' then begin
+            if StrLen(PhoneNo) <> 10 then
+                Error('Invalid phone number. 07 format must be exactly 10 characters.');
+            Exit;
+        end;
+
+        /* 01X Format */
+        if CopyStr(PhoneNo, 1, 2) = '01' then begin
+            if StrLen(PhoneNo) <> 10 then
+                Error('Invalid phone number. 01 format must be exactly 10 characters.');
+            Exit;
+        end;
+        Error('Invalid phone number format. Use +2547XXXXXXXX or 07XXXXXXXX or 01XXXXXXXX.');
     end;
 
 

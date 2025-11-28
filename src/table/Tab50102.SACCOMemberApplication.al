@@ -90,7 +90,7 @@ table 50102 "SACCO Member Application"
             Caption = 'Age (Years)';
             Editable = false;
             MinValue = 18;
-            
+
         }
         field(18; Gender; Enum Gender)
         {
@@ -131,7 +131,24 @@ table 50102 "SACCO Member Application"
         {
             ExtendedDatatype = PhoneNo;
             Caption = 'Mobile Phone No.';
-            // CaptionClass = '1,1,1';
+
+            /* Validated by eventsubscriber */
+        }
+
+        field(30; "Phone No. 2"; Text[30])
+        {
+            ExtendedDatatype = PhoneNo;
+            Caption = 'Mobile Phone No.';
+
+            trigger OnValidate()
+            var
+                Regex: Codeunit Regex;
+                Pattern: Text;
+            begin
+                Pattern := '^((\+2547\d{8})|(07\d{8})|(01\d{8}))$';
+                if not Regex.IsMatch(Rec."Phone No. 2") then
+                    Error('Invalid phone number format. Expected +2547XXXXXXXX, 07XXXXXXXX or 01XXXXXXXX.');
+            end;
         }
         field(31; "Alternative Phone No."; Text[30])
         {

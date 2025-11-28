@@ -1,35 +1,45 @@
 {
-  "id": "8c67b9a1-a69d-48ad-9027-8492226e7083",
-  "name": "BC.TradeServices.ERP",
-  "publisher": "Benjamin Okumu",
-  "version": "1.0.0.0",
-  "brief": "",
-  "description": "",
-  "privacyStatement": "",
-  "EULA": "",
-  "help": "",
-  "url": "",
-  "logo": "",
-  "dependencies": [],
-  "screenshots": [],
-  "platform": "1.0.0.0",
-  "application": "26.0.0.0",
-  "preprocessorSymbols": ["DEBUG"],
-  "idRanges": [
-    {
-      "from": 50100,
-      "to": 50149
-    }
-  ],
-  "resourceExposurePolicy": {
-    "allowDebugging": true,
-    "allowDownloadingSource": true,
-    "includeSourceInSymbolFile": true
-  },
-  "suppressWarnings": ["AL0432"],
-  "runtime": "15.0",
-  "features": [
-    "NoImplicitWith"
-  ]
-  
+    "id": "8c67b9a1-a69d-48ad-9027-8492226e7083",
+    "name": "BC.TradeServices.ERP",
+    "publisher": "Benjamin Okumu",
+    "version": "1.0.0.0",
+    "brief": "",
+    "description": "",
+    "privacyStatement": "",
+    "EULA": "",
+    "help": "",
+    "url": "",
+    "logo": "",
+    "dependencies": [
+        {
+            "id": "A01864F8-9C3F-42F6-8328-8D7BE1CE3E20",
+            "name": "_Exclude_Master_Data_Management",
+            "publisher": "Microsoft",
+            "version": "26.0.30643.33317"
+        }
+    ],
+    "screenshots": [],
+    "platform": "1.0.0.0",
+    "application": "26.0.30643.33317",
+    "preprocessorSymbols": [
+        "DEBUG"
+    ],
+    "idRanges": [
+        {
+            "from": 50100,
+            "to": 50149
+        }
+    ],
+    "resourceExposurePolicy": {
+        "allowDebugging": true,
+        "allowDownloadingSource": true,
+        "includeSourceInSymbolFile": true
+    },
+    "suppressWarnings": [
+        "AL0432"
+    ],
+    "runtime": "15.0",
+    "features": [
+        "NoImplicitWith"
+    ]
 }

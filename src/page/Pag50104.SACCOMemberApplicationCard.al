@@ -101,7 +101,7 @@ page 50104 "SACCO Member Application Card"
                 field("Phone No."; Rec."Phone No.")
                 {
                     ApplicationArea = All;
-                    
+
                 }
                 field("Alternative Phone No."; Rec."Alternative Phone No.")
                 {
@@ -187,7 +187,6 @@ page 50104 "SACCO Member Application Card"
     end;
 
     // =========================================================
-
     var
         NoFieldVisible: Boolean;
         IsMemberNoInitialized: Boolean;
