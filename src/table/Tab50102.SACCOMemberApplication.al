@@ -79,9 +79,10 @@ table 50102 "SACCO Member Application"
 
             trigger OnValidate()
             begin
+
                 Age := Date2DMY(Today, 3) - Date2DMY("Date of Birth", 3);
                 if Age < 18 then
-                    Error('Applicant must be at least 18 years old.');
+                    Error('Applicant must be at least 18years old');
             end;
         }
         field(17; Age; Integer)
@@ -89,6 +90,7 @@ table 50102 "SACCO Member Application"
             Caption = 'Age (Years)';
             Editable = false;
             MinValue = 18;
+            
         }
         field(18; Gender; Enum Gender)
         {
@@ -125,11 +127,11 @@ table 50102 "SACCO Member Application"
         }
 
         // ==================== CONTACT DETAILS ====================
-        field(30; "Phone No."; Text[30])
+        field(29; "Phone No."; Text[30])
         {
-            Caption = 'Mobile Phone No.';
             ExtendedDatatype = PhoneNo;
-            CaptionClass = '1,1,1';
+            Caption = 'Mobile Phone No.';
+            // CaptionClass = '1,1,1';
         }
         field(31; "Alternative Phone No."; Text[30])
         {
@@ -396,6 +398,7 @@ table 50102 "SACCO Member Application"
         "Full Name" := FullName;
     end;
     // =========================================================
+
 
 
     var

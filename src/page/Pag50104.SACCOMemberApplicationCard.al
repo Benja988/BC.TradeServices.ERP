@@ -24,6 +24,11 @@ page 50104 "SACCO Member Application Card"
                         if Rec.AssistEdit(xRec) then
                             CurrPage.Update();
                     end;
+
+                    trigger OnValidate()
+                    begin
+
+                    end;
                 }
                 field("First Name"; Rec."First Name")
                 {
@@ -37,7 +42,93 @@ page 50104 "SACCO Member Application Card"
                 {
                     ApplicationArea = All;
                 }
-                field("Full Name";Rec."Full Name")
+                field("Full Name"; Rec."Full Name")
+                {
+                    ApplicationArea = All;
+                }
+
+                field("Name as per ID"; Rec."Name as per ID")
+                {
+                    ApplicationArea = All;
+                }
+                field("Date of Birth"; Rec."Date of Birth")
+                {
+                    ApplicationArea = All;
+                }
+
+                field(Age; Rec.Age)
+                {
+                    ApplicationArea = All;
+                    Style = Strong;
+                }
+                field(Gender; Rec.Gender)
+                {
+                    ApplicationArea = All;
+                }
+                field("Marital Status"; Rec."Marital Status")
+                {
+                    ApplicationArea = All;
+                }
+            }
+            group("Identity Documents")
+            {
+                field("ID Type"; Rec."ID Type")
+                {
+                    ApplicationArea = All;
+                }
+                field("National ID No."; Rec."National ID No.")
+                {
+                    ApplicationArea = All;
+                }
+                field("KRA PIN"; Rec."KRA PIN")
+                {
+                    ApplicationArea = All;
+                }
+
+                field("HUDUMA Number"; Rec."HUDUMA Number")
+                {
+                    ApplicationArea = All;
+                }
+                field("Passport No."; Rec."Passport No.")
+                {
+                    ApplicationArea = All;
+                }
+
+            }
+            group("Contact Details")
+            {
+                Caption = 'Contact Details';
+                field("Phone No."; Rec."Phone No.")
+                {
+                    ApplicationArea = All;
+                    
+                }
+                field("Alternative Phone No."; Rec."Alternative Phone No.")
+                {
+                    ApplicationArea = All;
+                }
+                field(Email; Rec.Email)
+                {
+                    ApplicationArea = All;
+                }
+                field("Postal Address"; Rec."Postal Address")
+                {
+                    ApplicationArea = All;
+                }
+                field("Postal Code"; Rec."Postal Code")
+                {
+                    ApplicationArea = All;
+                }
+                field("Town/City"; Rec."Town/City")
+                {
+                    ApplicationArea = All;
+                }
+                field(County; Rec.County)
+                {
+                    ApplicationArea = All;
+                }
+
+                field("Physical Address"; Rec."Physical Address")
                 {
                     ApplicationArea = All;
                 }
@@ -96,10 +187,6 @@ page 50104 "SACCO Member Application Card"
     end;
 
     // =========================================================
-
-
-
-
 
     var
         NoFieldVisible: Boolean;
