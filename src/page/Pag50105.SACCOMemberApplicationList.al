@@ -15,14 +15,20 @@ page 50105 "SACCO Member Application List"
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
-
-
                 }
                 field("Full Name"; Rec."Full Name")
                 {
                     ApplicationArea = All;
                 }
-                field(Status;Rec.Status)
+                field(Status; Rec.Status)
+                {
+                    ApplicationArea = All;
+                }
+                field("Mobile Banking Enabled"; Rec."Mobile Banking Enabled")
+                {
+                    ApplicationArea = All;
+                }
+                field("Created By"; Rec."Created By")
                 {
                     ApplicationArea = All;
                 }
