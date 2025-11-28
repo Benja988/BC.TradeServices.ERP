@@ -22,6 +22,10 @@ page 50105 "SACCO Member Application List"
                 {
                     ApplicationArea = All;
                 }
+                field(Status;Rec.Status)
+                {
+                    ApplicationArea = All;
+                }
             }
         }
     }
