@@ -271,7 +271,7 @@ page 50104 "SACCO Member Application Card"
     trigger OnOpenPage()
     begin
         // SetNoFieldVisible();
-        Message('Welcome to my Sacco App (Member Application)');
+        // Message('Welcome to my Sacco App (Member Application)');
     end;
 
     // ====================== Field Visibility ===========================

@@ -40,6 +40,7 @@ table 50102 "SACCO Member Application"
         {
             Caption = 'First Name';
             NotBlank = true;
+            OptimizeForTextSearch = true;
             trigger OnValidate()
             begin
                 UpdateFullName();
@@ -48,6 +49,7 @@ table 50102 "SACCO Member Application"
         field(11; "Middle Name"; Text[50])
         {
             Caption = 'Middle Name';
+            OptimizeForTextSearch = true;
             trigger OnValidate()
             begin
                 UpdateFullName();
@@ -57,6 +59,7 @@ table 50102 "SACCO Member Application"
         {
             Caption = 'Surname';
             NotBlank = true;
+            OptimizeForTextSearch = true;
             trigger OnValidate()
             begin
                 UpdateFullName();
@@ -65,7 +68,18 @@ table 50102 "SACCO Member Application"
         field(13; "Full Name"; Text[150])
         {
             Caption = 'Full Name';
+            OptimizeForTextSearch = true;
             Editable = false;
+
+            trigger OnValidate()
+            begin
+                if ("Search Name" = UpperCase(xRec."Full Name")) or ("Search Name" = '') then
+                    "Search Name" := "Full Name";
+            end;
+        }
+        field(14; "Search Name"; Code[100])
+        {
+            Caption = 'Search Name';
         }
 
         field(15; "Name as per ID"; Text[150])
@@ -214,6 +228,12 @@ table 50102 "SACCO Member Application"
         field(37; "Physical Address"; Text[150])
         {
             Caption = 'Physical/Residence Address';
+        }
+        field(38; City; Text[50])
+        {
+            Caption = 'City';
+            OptimizeForTextSearch = true;
+            // TableRelation = if ()
         }
 
         // ==================== EMPLOYMENT & INCOME ====================
