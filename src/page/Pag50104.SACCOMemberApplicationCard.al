@@ -69,6 +69,10 @@ page 50104 "SACCO Member Application Card"
                 {
                     ApplicationArea = All;
                 }
+                field(Status; Rec.Status)
+                {
+                    ApplicationArea = All;
+                }
             }
             group("Identity Documents")
             {
@@ -103,6 +107,10 @@ page 50104 "SACCO Member Application Card"
                     ApplicationArea = All;
 
                 }
+                field("Phone No. 2"; Rec."Phone No. 2")
+                {
+                    ApplicationArea = All;
+                }
                 field("Alternative Phone No."; Rec."Alternative Phone No.")
                 {
                     ApplicationArea = All;
@@ -129,6 +137,128 @@ page 50104 "SACCO Member Application Card"
                 }
 
                 field("Physical Address"; Rec."Physical Address")
+                {
+                    ApplicationArea = All;
+                }
+            }
+            group("Employment & Income")
+            {
+                field("Employment Status"; Rec."Employment Status")
+                {
+                    ApplicationArea = All;
+                }
+                field("Employer Name"; Rec."Employer Name")
+                {
+                    ApplicationArea = All;
+                }
+                field("Payroll/Staff No."; Rec."Payroll/Staff No.")
+                {
+                    ApplicationArea = All;
+                }
+                field("Monthly Income"; Rec."Monthly Income")
+                {
+                    ApplicationArea = All;
+                }
+            }
+            group("Sacco Membership Details")
+            {
+                field("Member Type"; Rec."Member Type")
+                {
+                    ApplicationArea = All;
+                }
+                field("Account Category"; Rec."Account Category")
+                {
+                    ApplicationArea = All;
+                }
+                field("Introduced By Member No."; Rec."Introduced By Member No.")
+                {
+                    ApplicationArea = All;
+                }
+                field("Introducer Name"; Rec."Introducer Name")
+                {
+                    ApplicationArea = All;
+                }
+                field("Assigned Member No."; Rec."Assigned Member No.")
+                {
+                    ApplicationArea = All;
+                }
+            }
+
+            group("Bank & Mobile Banking")
+            {
+                field("Bank Code"; Rec."Bank Code")
+                {
+                    ApplicationArea = All;
+                }
+                field("Bank Account Name"; Rec."Bank Account Name")
+                {
+                    ApplicationArea = All;
+                }
+                field("Bank Account No."; Rec."Bank Account No.")
+                {
+                    ApplicationArea = All;
+                }
+                
+                field("Bank Branch Name"; Rec."Bank Branch Name")
+                {
+                    ApplicationArea = All;
+                }
+                field("Mobile Banking Enabled"; Rec."Mobile Banking Enabled")
+                {
+                    ApplicationArea = All;
+                }
+            }
+            group(Attachments)
+            {
+                field("ID Copy Attached"; Rec."ID Copy Attached")
+                {
+                    ApplicationArea = All;
+                }
+                field("Passport Photo Attached"; Rec."Passport Photo Attached")
+                {
+                    ApplicationArea = All;
+                }
+                field("Signature Specimen Attached"; Rec."Signature Specimen Attached")
+                {
+                    ApplicationArea = All;
+                }
+                field("KRA PIN Attached"; Rec."KRA PIN Attached")
+                {
+                    ApplicationArea = All;
+                }
+            }
+
+            group(Audit)
+            {
+                field("Created Date"; Rec."Created Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Created By"; Rec."Created By")
+                {
+                    ApplicationArea = All;
+                }
+                field("Date Submitted"; Rec."Date Submitted")
+                {
+                    ApplicationArea = All;
+                }
+                field("Submitted By"; Rec."Submitted By")
+                {
+                    ApplicationArea = All;
+                }
+                field("Approved Date"; Rec."Approved Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Approved By"; Rec."Approved By")
+                {
+                    ApplicationArea = All;
+                }
+                field("Rejection Reason"; Rec."Rejection Reason")
+                {
+                    ApplicationArea = All;
+                }
+                field("Rejected By"; Rec."Rejected By")
                 {
                     ApplicationArea = All;
                 }
@@ -185,8 +315,8 @@ page 50104 "SACCO Member Application Card"
     local procedure OnBeforeMemberNoIsVisible(var IsVisible: Boolean; var IsHandled: Boolean)
     begin
     end;
+    // ==========================================================
 
-    // =========================================================
     var
         NoFieldVisible: Boolean;
         IsMemberNoInitialized: Boolean;

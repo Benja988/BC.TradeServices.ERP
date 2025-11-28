@@ -138,7 +138,7 @@ table 50102 "SACCO Member Application"
         field(30; "Phone No. 2"; Text[30])
         {
             ExtendedDatatype = PhoneNo;
-            Caption = 'Mobile Phone No.';
+            Caption = 'Mobile Phone No. 2';
 
             trigger OnValidate()
             var
@@ -146,7 +146,7 @@ table 50102 "SACCO Member Application"
                 Pattern: Text;
             begin
                 Pattern := '^((\+2547\d{8})|(07\d{8})|(01\d{8}))$';
-                if not Regex.IsMatch(Rec."Phone No. 2") then
+                if not Regex.IsMatch(Rec."Phone No. 2", Pattern) then
                     Error('Invalid phone number format. Expected +2547XXXXXXXX, 07XXXXXXXX or 01XXXXXXXX.');
             end;
         }
@@ -154,11 +154,33 @@ table 50102 "SACCO Member Application"
         {
             Caption = 'Alternative Phone No.';
             ExtendedDatatype = PhoneNo;
+
+            trigger OnValidate()
+            var
+                TyperHelper: Codeunit "Type Helper";
+                PhonNoCannotContainLettersErr: Label 'Phone Number cannot contain Letters';
+            begin
+                if not TyperHelper.IsPhoneNumber("Alternative Phone No.") then
+                    FieldError("Alternative Phone No.", PhonNoCannotContainLettersErr);
+            end;
         }
         field(32; Email; Text[80])
         {
             Caption = 'Personal Email';
             ExtendedDatatype = EMail;
+
+
+            trigger OnValidate()
+            var
+                EmailMgt: Codeunit Email;
+                Pattern: Text;
+                Regex: Codeunit Regex;
+                EmailInvalidErr: Label 'The Email you have entered is invalid';
+            begin
+                Pattern := '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$';
+                if not Regex.IsMatch(Email, Pattern) then
+                    FieldError(Email, EmailInvalidErr);
+            end;
         }
         field(33; "Postal Address"; Text[100])
         {
@@ -168,7 +190,7 @@ table 50102 "SACCO Member Application"
         {
             Caption = 'Postal Code';
             TableRelation = "Post Code";
-            ValidateTableRelation = true;
+            // ValidateTableRelation = true;
 
             trigger OnValidate()
             var

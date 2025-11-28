@@ -82,7 +82,7 @@ codeunit 50101 Validations
     // =======================================================
     // Kenya Specific Phone No Validation
     // =================================================
-    [EventSubscriber(ObjectType::Table, Database::"SACCO Member Application", OnAfterValidateEvent, "Alternative Phone No.", false, false)]
+    [EventSubscriber(ObjectType::Table, Database::"SACCO Member Application", OnAfterValidateEvent, "Phone No.", false, false)]
     local procedure KenyaPhonNoValidation(var Rec: Record "SACCO Member Application"; var xRec: Record "SACCO Member Application")
     var
         PhoneNo: Text;
