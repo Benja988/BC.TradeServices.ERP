@@ -1,0 +1,17 @@
+CREATING DEMOS ACCOUNT
+1. demos.microsoft.com
+2.
+
+
+BANK ACCOUNT
+=> Creating Bank Account
+=> Bank Account Posting group
+=> Cash Receipt Journal
+
+
+FIXED ASSETS
+=> Acquiring Fixed Asset
+=> Depreciation SetUp
+=> Disposing Fixed Asset
+=> Importing Fixed Asset (Opening Balance)
+=> Selling Fixed Asset
