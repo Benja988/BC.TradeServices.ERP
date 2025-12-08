@@ -1,0 +1,22 @@
+SHAREPOINT STUDY
+//=======================
+// Components
+//=======================
+1. Lists
+2. List Forms
+
+3. Document Library
+==> Is a central, organized place on a sharepoint site to store, manage, share and collaborate
+=> Folders & Folders within Folders
+=> Versioning, Version History
+=> Concurrent Editing of files
+=> Check In and Out (CheckOut - No one else can make changed to it)
+=> Metadata = data about data
+
+4. Page
+
+
+5. New Post
+6. New Link
+7. Plan
+8. Link
