@@ -1,0 +1,58 @@
+1. GitHub
+Install GitHub CLI
+
+# (1) Authenticate gh first if not already done)
+gh auth login
+
+# (2) Create repo on GitHub (private example - remove --private for public)
+gh repo create sharepoint-enterprise-hub --private --description "Company Intranet Hub — SPFx / PnP / Power Platform" --confirm
+
+
+=> mkdir sharepoint-enterprise-hub
+=> cd sharepoint-enterprise-hub
+=> git init
+=> md docs, SPFx, pnp, PowerApps, flows
+=> Add-Content -Path README.md -Value "Additional notes go here."
+=>  @"
+ Monorepo for SPFx, PnP provisioning, PowerApps, Power Automate flows and supporting scripts.
+
+ ## Structure
+ - /docs — architecture, IA, diagrams
+ - /spfx — SPFx projects (webparts & extensions)
+ - /pnp — PnP provisioning templates & scripts
+ - /powerapps — Power Apps solutions
+ - /flows — Power Automate flows (exported)
+ - /scripts — helper scripts (provisioning, CI helpers)
+ "@ | Set-Content -Path README.md
+
+=> @"
+ node_modules/
+ dist/
+ lib/
+ package-lock.json
+ .env
+ .vscode/
+ .DS_Store
+ gulpfile.js # if generated locally and not needed
+ "@ | Set-Content -Path .gitignore
+
+=>  @"
+ MIT License
+ Copyright (c) $(Get-Date -Format yyyy)
+ "@ | Set-Content -Path LICENSE
+
+=> git remote add origin https://github.com/Benja988/sharepoint-enterprise-hub.git
+=> git branch -M main
+
+
+Creating Projects and Issues
+In your repo page -> Projects -> New project -> choose Board (or "Projects (beta)" depending on UI).
+Name: Sprint Board - Week 1 or Project Board
+Create columns
+
+Issues CLI sample
+gh issue create --title "Create project board & populate" --body "Create Kanban board with columns Backlog, To Do, In Progress, Code Review, Testing, Done. Add Week 1 issues to Backlog/To Do." --label "week 1"
+
+SharePoint
+npm install -g yo gulp @microsoft/generator-sharepoint
+gulp trust-dev-cert

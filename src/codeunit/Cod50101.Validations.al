@@ -114,5 +114,30 @@ codeunit 50101 Validations
     end;
 
 
+    //🔧 As Business Central developers, we often deal with operations that can fail—like inserting records or calling external APIs. Instead of cluttering code with manual error handling, AL gives us a neat tool: `TryFunction`.
+
+
+
+/* [TryFunction]
+procedure InsertCustomerSafe(Customer: Record Customer): Boolean;
+begin
+    Customer.Insert();
+    exit(true);
+end;
+
+procedure CreateCustomer()
+var
+    Customer: Record Customer;
+    Success: Boolean;
+begin
+    Customer.Init();
+    Customer.Name := 'Test Customer';
+    Success := InsertCustomerSafe(Customer);
+
+    if not Success then
+        Message('Customer could not be created. Handle gracefully here.');
+end; */
+
+
 
 }

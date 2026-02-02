@@ -3,6 +3,8 @@ SHAREPOINT STUDY
 // Components
 //=======================
 1. Lists
+
+
 2. List Forms
 
 3. Document Library
@@ -14,9 +16,22 @@ SHAREPOINT STUDY
 => Metadata = data about data
 
 4. Page
+=> Tweaks when creating pages
 
 
 5. New Post
 6. New Link
 7. Plan
 8. Link
+
+
+Setting Up sharepoint Framework SPFX development environment
+1. Install Node JS latest Version. NOTE: The SharePoint Framework is only supported on LTS versions.
+2. Install a Code Editor
+3. Install Gulp=> Javascript based task runner used to automate
+    repetitive tasks / Alternative use heft (npm install @rushstack/heft --global)
+   Install Yeoman=> helps you kick-start new projects, and prescribes best practices and tools to help you stay productive.
+   *npm install gulp-cli yo @microsoft/generator-sharepoint --global   =>(npm install -g npm@11.7.0)
+4. Install a modern web browser
+
+WebParts:

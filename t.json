@@ -1,0 +1,89 @@
+{
+  "loanNo": "LN1760",
+  "guarantors": [
+    {
+      "guarantorNo": "MB0786",
+      "guarantorName": "Veronica Wambui Mwangi",
+      "nationalId": "28730011",
+      "amountGuaranteed": "200,000"
+    },
+    {
+      "guarantorNo": "MB0541",
+      "guarantorName": "Densu Njoroge Kuria",
+      "nationalId": "27223667",
+      "amountGuaranteed": "200,000"
+    },
+    {
+      "guarantorNo": "MB1293",
+      "guarantorName": "Steve Bargoiyet",
+      "nationalId": "26495698",
+      "amountGuaranteed": "50,000"
+    },
+    {
+      "guarantorNo": "MB0109",
+      "guarantorName": "Mutuku John Nzomo",
+      "nationalId": "12767380",
+      "amountGuaranteed": "100,000"
+    },
+    {
+      "guarantorNo": "MB0629",
+      "guarantorName": "Luciana W. Lugho",
+      "nationalId": "24472001",
+      "amountGuaranteed": "200,000"
+    },
+    {
+      "guarantorNo": "MB0088",
+      "guarantorName": "Cheptoo Lilian",
+      "nationalId": "10540462",
+      "amountGuaranteed": "200,000"
+    },
+    {
+      "guarantorNo": "MB0037",
+      "guarantorName": "Kinyua Josephat Mwai",
+      "nationalId": "11183780",
+      "amountGuaranteed": "100,000"
+    },
+    {
+      "guarantorNo": "MB1289",
+      "guarantorName": "Ooko Ouma Lordvick",
+      "nationalId": "27830069",
+      "amountGuaranteed": "50,000"
+    },
+    {
+      "guarantorNo": "MB1155",
+      "guarantorName": "Patrick Ruku Komo",
+      "nationalId": "27338425",
+      "amountGuaranteed": "50,000"
+    },
+    {
+      "guarantorNo": "MB0046",
+      "guarantorName": "Okita George O.",
+      "nationalId": "11048903",
+      "amountGuaranteed": "50,000"
+    },
+    {
+      "guarantorNo": "MB0806",
+      "guarantorName": "Clifford Oduor Otieno",
+      "nationalId": "27129970",
+      "amountGuaranteed": "100,000"
+    },
+    {
+      "guarantorNo": "MB1087",
+      "guarantorName": "Peter Sirome Emayi",
+      "nationalId": "28989828",
+      "amountGuaranteed": "50,000"
+    },
+    {
+      "guarantorNo": "MB0567",
+      "guarantorName": "Bernadetta Sikuku Mukudi",
+      "nationalId": "11596345",
+      "amountGuaranteed": "50,000"
+    },
+    {
+      "guarantorNo": "MB1309",
+      "guarantorName": "Felix Kipruto Too",
+      "nationalId": "27684878",
+      "amountGuaranteed": "100,000"
+    }
+  ]
+}
