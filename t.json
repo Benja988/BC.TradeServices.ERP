@@ -1,0 +1,44 @@
+{
+  "member": {
+    "memberNo": "0000000001",
+    "name": "GEOFFREY  GITHINJI MWANGI",
+    "nationalId": "0313814",
+    "mobileNo": "254722889458"
+  },
+  "accounts": [
+    {
+      "accountNo": "000000000104",
+      "accountName": "Field Collection",
+      "balance": "0.00"
+    },
+    {
+      "accountNo": "400500000000000100",
+      "accountName": "Member Share Capital",
+      "balance": "39,999.58"
+    },
+    {
+      "accountNo": "400501000000000100",
+      "accountName": "Member Savings",
+      "balance": "225,063.95"
+    },
+    {
+      "accountNo": "400505000000000100",
+      "accountName": "Member Ordinary Savings",
+      "balance": "0.00"
+    }
+  ],
+  "loans": [
+    {
+      "loanNo": "300103000000000103",
+      "loanProductType": "003",
+      "loanName": "PROJECT LOAN",
+      "balance": "123,208"
+    },
+    {
+      "loanNo": "BCL00890",
+      "loanProductType": "001",
+      "loanName": "NORMAL LOAN",
+      "balance": "496,600"
+    }
+  ]
+}
